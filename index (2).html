@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inova Bau — Meisterbetrieb Hamburg</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#efe7d2;
+    --cream-soft:#f7f2e6;
+    --card:#fffdf8;
+    --ink:#211e18;
+    --ink-dim:#6b6355;
+    --line:#ddd3bc;
+    --moss:#4c5d41;
+    --moss-bright:#64793f;
+    --dark:#211e18;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--cream);color:var(--ink);font-family:'Instrument Sans',sans-serif;line-height:1.6;}
+  h1,h2,h3{font-family:'Instrument Sans',sans-serif;font-weight:600;letter-spacing:-0.01em;}
+  .mono{font-family:'IBM Plex Mono',monospace;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.07em;color:var(--moss);}
+  a{color:inherit;}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 32px;}
+
+  header{position:sticky;top:0;z-index:30;background:rgba(239,231,210,0.9);backdrop-filter:blur(8px);}
+  nav{display:flex;justify-content:space-between;align-items:center;padding:18px 32px;max-width:1140px;margin:0 auto;}
+  nav .logo img{height:42px;display:block;}
+  .logo-mark{display:flex;align-items:center;gap:10px;}
+  .logo-mark .word{font-family:'Instrument Sans',sans-serif;font-weight:700;font-size:1.15rem;letter-spacing:-0.01em;color:var(--ink);}
+  .logo-mark .word span{color:var(--moss);}
+  .pill-nav{display:flex;gap:4px;background:var(--card);border:1px solid var(--line);border-radius:30px;padding:5px;}
+  .pill-nav a{text-decoration:none;color:var(--ink-dim);font-size:0.86rem;padding:9px 18px;border-radius:24px;}
+  .pill-nav a:hover{background:var(--cream-soft);color:var(--ink);}
+  .cta-btn{background:var(--moss);color:#fff;padding:11px 22px;border-radius:30px;text-decoration:none;font-weight:600;font-size:0.86rem;}
+  .cta-btn:hover{background:var(--moss-bright);}
+
+  .hero{padding:70px 0 60px;}
+  .hero-top{text-align:center;max-width:720px;margin:0 auto 46px;}
+  .hero-top .mono{display:block;margin-bottom:16px;}
+  .hero-top h1{font-size:clamp(2.4rem,5.5vw,3.6rem);line-height:1.1;margin-bottom:20px;}
+  .hero-top p{color:var(--ink-dim);font-size:1.08rem;max-width:560px;margin:0 auto 30px;}
+  .hero-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+  .btn-outline{border:1px solid var(--line);background:var(--card);padding:11px 24px;border-radius:30px;text-decoration:none;font-size:0.88rem;color:var(--ink);}
+  .btn-outline:hover{border-color:var(--moss);}
+
+  .hero-panel{
+    max-width:1140px;margin:0 auto;border-radius:22px;overflow:hidden;position:relative;
+    aspect-ratio:16/7;border:1px solid var(--line);
+    background:linear-gradient(135deg,#dcd1b2 0%,#c9bd9c 100%);
+    display:flex;align-items:flex-end;padding:0 32px;
+  }
+  .hero-panel span{padding:20px 0;font-family:'IBM Plex Mono',monospace;font-size:0.75rem;color:#55503f;}
+
+  .stat-strip{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:44px 0 0;}
+  .stat-pill{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 26px;text-align:center;min-width:130px;}
+  .stat-pill strong{font-size:1.7rem;display:block;color:var(--moss);}
+  .stat-pill span{font-size:0.76rem;color:var(--ink-dim);}
+
+  section{padding:76px 0;}
+  .section-head{max-width:620px;margin:0 auto 46px;text-align:center;}
+  .section-head h2{font-size:clamp(1.9rem,3.2vw,2.5rem);margin-top:10px;}
+  .section-head p{color:var(--ink-dim);margin-top:12px;}
+
+  .services{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  .service{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:28px 24px;}
+  .service .ico{width:40px;height:40px;border-radius:12px;background:var(--cream-soft);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-family:'IBM Plex Mono',monospace;font-size:0.8rem;color:var(--moss);}
+  .service h3{font-size:1.15rem;margin-bottom:8px;font-weight:600;}
+  .service p{color:var(--ink-dim);font-size:0.9rem;}
+
+  .trust-band{background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .trust{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+  .trust blockquote{font-size:clamp(1.4rem,2.4vw,1.8rem);line-height:1.4;font-weight:500;color:var(--ink);}
+  .trust .attribution{margin-top:18px;color:var(--moss);font-size:0.85rem;font-weight:600;}
+  .areas{display:flex;flex-wrap:wrap;gap:8px;}
+  .area-chip{background:var(--cream-soft);border:1px solid var(--line);padding:7px 14px;border-radius:20px;font-size:0.8rem;color:var(--ink-dim);}
+
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;}
+  .about-panel{aspect-ratio:4/3;border-radius:18px;border:1px solid var(--line);background:var(--card);display:flex;align-items:flex-end;padding:22px;}
+  .about-panel span{font-family:'IBM Plex Mono',monospace;font-size:0.72rem;color:var(--ink-dim);}
+  .about-text h2{font-size:2rem;margin-bottom:16px;}
+  .about-text p{color:var(--ink-dim);margin-bottom:14px;}
+
+  .cta-band{background:var(--dark);color:#f3ede0;border-radius:26px;max-width:1140px;margin:0 auto;padding:64px 40px;text-align:center;}
+  .cta-band h2{font-size:clamp(1.9rem,3.4vw,2.5rem);margin-bottom:14px;color:#fff;}
+  .cta-band p{color:#c9c2b0;max-width:460px;margin:0 auto 28px;}
+  .btn-cream{background:var(--cream);color:var(--dark);padding:13px 28px;border-radius:30px;text-decoration:none;font-weight:600;font-size:0.88rem;}
+
+  .contact{display:grid;grid-template-columns:1.1fr 0.9fr;gap:50px;}
+  .contact-info h2{font-size:2rem;margin-bottom:16px;}
+  .contact-info p{color:var(--ink-dim);margin-bottom:24px;max-width:400px;}
+  .contact-list{list-style:none;}
+  .contact-list li{display:flex;gap:16px;padding:14px 0;border-top:1px solid var(--line);font-size:0.94rem;}
+  .contact-list li:last-child{border-bottom:1px solid var(--line);}
+  .contact-list .label{width:110px;color:var(--ink-dim);font-size:0.76rem;text-transform:uppercase;letter-spacing:0.03em;padding-top:2px;}
+  form{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:28px;}
+  form label{display:block;font-size:0.8rem;color:var(--ink-dim);margin-bottom:6px;margin-top:16px;}
+  form label:first-child{margin-top:0;}
+  form input, form textarea{width:100%;background:var(--cream-soft);border:1px solid var(--line);color:var(--ink);padding:11px 13px;border-radius:10px;font-family:'Instrument Sans',sans-serif;font-size:0.92rem;}
+  form button{margin-top:20px;width:100%;background:var(--moss);color:#fff;border:none;padding:13px;border-radius:30px;font-weight:600;font-size:0.9rem;cursor:pointer;}
+  form button:hover{background:var(--moss-bright);}
+
+  footer{padding:34px 0;border-top:1px solid var(--line);}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;font-size:0.8rem;color:var(--ink-dim);}
+
+  .demo-tag{position:fixed;top:16px;right:16px;background:var(--dark);color:var(--cream);font-family:'IBM Plex Mono',monospace;font-size:0.65rem;padding:7px 11px;border-radius:20px;z-index:60;letter-spacing:0.03em;}
+
+  #chat-toggle{position:fixed;bottom:22px;right:22px;width:58px;height:58px;border-radius:50%;background:var(--moss);color:#fff;border:none;cursor:pointer;font-size:1.5rem;box-shadow:0 10px 24px rgba(76,93,65,0.35);z-index:70;}
+  #chat-panel{position:fixed;bottom:92px;right:22px;width:340px;max-width:90vw;height:460px;max-height:70vh;background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:0 20px 50px rgba(33,30,24,0.2);display:none;flex-direction:column;overflow:hidden;z-index:70;}
+  #chat-panel.open{display:flex;}
+  #chat-head{background:var(--dark);color:#fff;padding:15px 18px;position:relative;}
+  #chat-head strong{font-size:1.02rem;}
+  #chat-head span{font-size:0.72rem;color:#c9c2b0;display:block;margin-top:2px;}
+  #chat-close{position:absolute;top:14px;right:16px;background:none;border:none;color:#fff;font-size:1.1rem;cursor:pointer;}
+  #chat-note{font-size:0.68rem;color:var(--ink-dim);padding:7px 16px;background:var(--cream-soft);border-bottom:1px solid var(--line);}
+  #chat-msgs{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;background:var(--cream-soft);}
+  .msg{max-width:82%;padding:10px 13px;border-radius:14px;font-size:0.86rem;}
+  .msg.bot{background:var(--card);border:1px solid var(--line);align-self:flex-start;border-bottom-left-radius:4px;}
+  .msg.user{background:var(--moss);color:#fff;align-self:flex-end;border-bottom-right-radius:4px;}
+  #chat-form{display:flex;gap:8px;padding:12px;border-top:1px solid var(--line);background:var(--card);}
+  #chat-input{flex:1;border:1px solid var(--line);background:var(--cream-soft);border-radius:20px;padding:9px 13px;font-family:'Instrument Sans',sans-serif;font-size:0.86rem;}
+  #chat-form button{background:var(--moss);color:#fff;border:none;width:36px;height:36px;border-radius:50%;cursor:pointer;flex-shrink:0;}
+
+  @media(max-width:820px){
+    .services{grid-template-columns:1fr;}
+    .trust{grid-template-columns:1fr;}
+    .about-grid{grid-template-columns:1fr;}
+    .contact{grid-template-columns:1fr;}
+    .pill-nav{display:none;}
+    .cta-band{border-radius:18px;padding:48px 24px;}
+  }
+
+  .demo-tag{top:auto;bottom:22px;right:auto;left:22px;}
+  .slider{max-width:1140px;margin:0 auto;}
+  .track{position:relative;display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;border-radius:22px;}
+  .track::-webkit-scrollbar{display:none;}
+  .slide{flex:0 0 100%;scroll-snap-align:center;aspect-ratio:16/7;border-radius:22px;border:1px solid var(--line);position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:26px 30px;}
+  .slide svg{position:absolute;inset:0;width:100%;height:100%;}
+  .cap{position:relative;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 20px;max-width:330px;}
+  .cap strong{display:block;font-size:1.05rem;}
+  .cap span{font-size:0.85rem;color:var(--ink-dim);}
+  .sl-ctrl{display:flex;justify-content:center;align-items:center;gap:14px;margin-top:18px;}
+  .sl-btn{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--card);cursor:pointer;color:var(--ink);font-size:1rem;}
+  .sl-btn:hover{border-color:var(--moss);}
+  .dots{display:flex;gap:8px;}
+  .dot{width:9px;height:9px;border-radius:5px;background:var(--line);border:none;padding:0;cursor:pointer;transition:width .25s;}
+  .dot.on{background:var(--moss);width:26px;}
+  .ba{--p:50%;position:relative;max-width:900px;margin:0 auto;aspect-ratio:16/9;border-radius:22px;overflow:hidden;border:1px solid var(--line);user-select:none;}
+  .ba>div{position:absolute;inset:0;}
+  .ba svg{width:100%;height:100%;display:block;}
+  .ba-before{clip-path:inset(0 calc(100% - var(--p)) 0 0);}
+  .ba-line{position:absolute;top:0;bottom:0;left:var(--p);width:3px;background:#fff;transform:translateX(-50%);pointer-events:none;}
+  .ba-line::after{content:"\2194";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:42px;height:42px;border-radius:50%;background:#fff;color:var(--moss);display:flex;align-items:center;justify-content:center;font-size:1.1rem;box-shadow:0 4px 14px rgba(33,30,24,.25);}
+  .ba-tag{position:absolute;top:16px;background:var(--dark);color:var(--cream);font-size:0.74rem;padding:5px 12px;border-radius:20px;pointer-events:none;}
+  .ba input{position:absolute;inset:0;width:100%;height:100%;opacity:0;margin:0;cursor:ew-resize;touch-action:pan-y;}
+  .contact-list a{text-decoration:none;border-bottom:1px solid var(--line);}
+  .contact-list a:hover{border-color:var(--moss);}
+  @media(max-width:820px){
+    .slide{aspect-ratio:4/3;padding:18px;}
+    .services{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;margin:0 -32px;padding:0 32px 8px;scrollbar-width:none;}
+    .services::-webkit-scrollbar{display:none;}
+    .service{flex:0 0 78%;scroll-snap-align:start;}
+  }
+  @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto;}.dot{transition:none;}}
+
+  .service{display:block;text-decoration:none;color:inherit;}
+  .service:hover{border-color:var(--moss);}
+  .more{display:block;margin-top:14px;font-size:.82rem;font-weight:600;color:var(--moss);}
+  .ph{position:relative;margin:0;aspect-ratio:4/3;border:1.5px dashed var(--line);border-radius:16px;background:var(--cream-soft);display:flex;align-items:center;justify-content:center;overflow:hidden;color:var(--ink-dim);font-size:.82rem;text-align:center;padding:12px;}
+  .ph-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+  .has-photo .ph-label{display:none;}
+  .ph.has-photo{border-style:solid;}
+  .back{display:inline-block;margin-bottom:22px;font-size:.86rem;font-weight:600;color:var(--moss);text-decoration:none;}
+  .sub-head{max-width:640px;}
+  .sub-head h2{font-size:clamp(1.9rem,3.4vw,2.6rem);margin:10px 0 14px;}
+  .sub-head p{color:var(--ink-dim);font-size:1.05rem;}
+  .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:34px 0 46px;}
+  .sub-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;}
+  .sub-grid h3{font-size:1.2rem;margin-bottom:14px;}
+  .checks,.steps{list-style:none;}
+  .checks li,.steps li{padding:13px 0;border-top:1px solid var(--line);font-size:.95rem;}
+  .checks li:last-child,.steps li:last-child{border-bottom:1px solid var(--line);}
+  .steps{counter-reset:st;}
+  .steps li{counter-increment:st;display:grid;grid-template-columns:34px 1fr;gap:2px 8px;}
+  .steps li::before{content:counter(st);grid-row:span 2;width:26px;height:26px;border-radius:50%;background:var(--moss);color:#fff;font-size:.8rem;font-weight:600;display:flex;align-items:center;justify-content:center;}
+  .steps li span{color:var(--ink-dim);font-size:.88rem;}
+  .sub-cta{margin-top:46px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;background:var(--dark);color:#fff;border-radius:22px;padding:30px 34px;}
+  .sub-cta h3{font-size:1.3rem;}
+  .sub-cta .cta-btn{background:var(--cream);color:var(--dark);}
+  @media(max-width:820px){
+    .gallery{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin:26px -32px 34px;padding:0 32px;}
+    .gallery::-webkit-scrollbar{display:none;}
+    .ph{flex:0 0 78%;scroll-snap-align:start;}
+    .sub-grid{grid-template-columns:1fr;gap:34px;}
+  }
+</style>
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body>
+
+<div class="demo-tag">Demo-Entwurf von Weblift</div>
+
+<header>
+  <nav>
+    <a class="logo logo-mark" href="#">
+      <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="34" height="34" rx="10" fill="#4c5d41"/>
+        <path d="M9 23V15L17 9L25 15V23" stroke="#efe7d2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M13 23V17H21V23" stroke="#efe7d2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="word">INOVA <span>BAU</span></span>
+    </a>
+    <div class="pill-nav">
+      <a href="#leistungen">Leistungen</a>
+      <a href="#ueber-uns">Über uns</a>
+      <a href="#kontakt">Kontakt</a>
+    </div>
+    <a href="#kontakt" class="cta-btn">Anfrage stellen</a>
+  </nav>
+</header>
+
+<div id="home">
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-top">
+      <span class="mono">Meisterbetrieb · Sanitär · Heizung · Innenausbau · Hamburg</span>
+      <h1>Handwerk, dem Hamburg vertraut.</h1>
+      <p>Inova Bau ist Ihr Ansprechpartner für Sanierung, Sanitär, Elektro und Innenausbau — mit über 25 Jahren Erfahrung, rund um die Uhr erreichbar, direkt aus St. Pauli.</p>
+      <div class="hero-actions">
+        <a href="#kontakt" class="cta-btn">Kostenlose Erstberatung</a>
+        <a href="#leistungen" class="btn-outline">Leistungen ansehen</a>
+        <a href="tel:+4915164566665" class="btn-outline">Notfall: 01516 4566665</a>
+      </div>
+    </div>
+    <div class="slider">
+      <div class="track" id="track" tabindex="0" aria-label="Leistungen, nach links und rechts wischen"><div class="slide" data-slot="slide-1"><svg viewBox="0 0 1200 500" preserveAspectRatio="xMidYMid slice"><rect width="1200" height="500" fill="#dcd1b2"/><g stroke="#4c5d41" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity=".85"><g transform="translate(640 -10) scale(1.9)"><path d="M120 320 L120 230 L220 160 L320 230 L320 320 Z"/><rect x="160" y="250" width="40" height="70" fill="#4c5d41" stroke="none"/><rect x="240" y="260" width="36" height="36"/></g></g></svg><div class="cap"><strong>Wohnungssanierung</strong><span>Von der Entkernung bis zur Übergabe.</span></div></div><div class="slide" data-slot="slide-2"><svg viewBox="0 0 1200 500" preserveAspectRatio="xMidYMid slice"><rect width="1200" height="500" fill="#d3d9c3"/><g stroke="#4c5d41" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity=".85"><path d="M700 90 V320 H920 V170 H1060 V400"/><circle cx="700" cy="90" r="22"/><circle cx="1060" cy="400" r="22"/><path d="M850 320 V400"/></g></svg><div class="cap"><strong>Sanitär &amp; Heizung</strong><span>Installation, Wartung und Notdienst.</span></div></div><div class="slide" data-slot="slide-3"><svg viewBox="0 0 1200 500" preserveAspectRatio="xMidYMid slice"><rect width="1200" height="500" fill="#e3d8b9"/><g stroke="#4c5d41" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity=".85"><path d="M900 70 L790 260 L880 260 L830 430 L1010 210 L910 210 Z"/></g></svg><div class="cap"><strong>Elektro</strong><span>Fachgerecht nach aktuellen Normen.</span></div></div><div class="slide" data-slot="slide-4"><svg viewBox="0 0 1200 500" preserveAspectRatio="xMidYMid slice"><rect width="1200" height="500" fill="#d7cdb8"/><g stroke="#4c5d41" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity=".85"><g transform="translate(560 40) scale(1.8)"><rect x="200" y="100" width="110" height="40" rx="8"/><path d="M255 140 L255 200 M235 200 L275 200"/></g></g></svg><div class="cap"><strong>Maler</strong><span>Saubere Ausführung innen und außen.</span></div></div></div>
+      <div class="sl-ctrl"><button class="sl-btn" id="prev" aria-label="Zurück">&#8592;</button><div class="dots" id="dots"></div><button class="sl-btn" id="next" aria-label="Weiter">&#8594;</button></div>
+      <p class="mono" style="text-align:center;margin-top:12px;">Platzhalter — hier kommen echte Projektfotos hin</p>
+    </div>
+    <div class="stat-strip">
+      <div class="stat-pill"><strong>25+</strong><span>Jahre Erfahrung</span></div>
+      <div class="stat-pill"><strong>7/7</strong><span>Tage erreichbar</span></div>
+      <div class="stat-pill"><strong>7</strong><span>Gewerke aus einer Hand</span></div>
+      <div class="stat-pill"><strong>18</strong><span>Stadtteile</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="leistungen">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="mono">Leistungen</span>
+      <h2>Sieben Gewerke, ein verlässlicher Partner</h2>
+      <p>Von der ersten Begehung bis zur Abnahme — alles aus einer Hand.</p>
+    </div>
+    <div class="services">
+      <a class="service" href="#/sanierung"><div class="ico">01</div><h3>Wohnungssanierung</h3><p>Komplettsanierung aus einer Hand, termingenau geplant.</p><span class="more">Mehr erfahren</span></a>
+      <a class="service" href="#/sanitaer"><div class="ico">02</div><h3>Sanitär &amp; Heizung</h3><p>Installation, Wartung und Notdienst für Bad und Heizung.</p><span class="more">Mehr erfahren</span></a>
+      <a class="service" href="#/elektro"><div class="ico">03</div><h3>Elektro</h3><p>Fachgerechte Elektroinstallation nach aktuellen Normen.</p><span class="more">Mehr erfahren</span></a>
+      <a class="service" href="#/maler"><div class="ico">04</div><h3>Maler</h3><p>Saubere Ausführung innen und außen, auf den Punkt genau.</p><span class="more">Mehr erfahren</span></a>
+      <a class="service" href="#/trockenbau"><div class="ico">05</div><h3>Trocken- &amp; Ladenbau</h3><p>Trockenbau und Ladeneinrichtung für Gewerbe und Privat.</p><span class="more">Mehr erfahren</span></a>
+      <a class="service" href="#/maurer"><div class="ico">06</div><h3>Maurer &amp; Fliesen</h3><p>Von der Wand bis zum letzten Fliesenstoß.</p><span class="more">Mehr erfahren</span></a>
+      <a class="service" href="#/tischler"><div class="ico">07</div><h3>Tischler &amp; Parkett</h3><p>Maßgefertigte Lösungen in Holz, präzise verlegt.</p><span class="more">Mehr erfahren</span></a>
+    </div>
+  </div>
+</section>
+
+<section id="projekte">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="mono">Projekte</span>
+      <h2>Vorher, nachher — ziehen Sie selbst</h2>
+      <p>So wird aus einem Altbau-Zimmer ein fertiger Wohnraum.</p>
+    </div>
+    <div class="ba" id="ba">
+      <div class="ba-after" data-slot="nachher" data-alt="Nachher"><svg viewBox="0 0 800 450" preserveAspectRatio="xMidYMid slice"><rect width="800" height="450" fill="#f7f2e6"/><rect y="320" width="800" height="130" fill="#c9a46a"/><rect x="90" y="70" width="190" height="200" fill="#e9f0f4" stroke="#4c5d41" stroke-width="8"/><path d="M185 70 V270 M90 170 H280" stroke="#4c5d41" stroke-width="6"/><rect x="520" y="90" width="120" height="230" rx="4" fill="#4c5d41"/></svg></div>
+      <div class="ba-before" data-slot="vorher" data-alt="Vorher"><svg viewBox="0 0 800 450" preserveAspectRatio="xMidYMid slice"><rect width="800" height="450" fill="#b9ae98"/><rect y="320" width="800" height="130" fill="#8f8570"/><rect x="90" y="70" width="190" height="200" fill="#cfd6d9" stroke="#6b6355" stroke-width="8"/><path d="M185 70 V270 M90 170 H280" stroke="#6b6355" stroke-width="6"/><rect x="520" y="90" width="120" height="230" rx="4" fill="#7d7461"/><path d="M360 40 L390 110 L365 150 L400 220 M600 30 L580 80 L610 120" stroke="#6b6355" stroke-width="4" fill="none"/><path d="M60 400 L140 380 L200 410 M420 395 L500 410 L560 385" stroke="#6b6355" stroke-width="10" stroke-linecap="round"/></svg></div>
+      <span class="ba-tag" style="left:16px;">Vorher</span><span class="ba-tag" style="right:16px;">Nachher</span>
+      <div class="ba-line"></div>
+      <input type="range" id="ba-range" min="0" max="100" value="50" aria-label="Regler zwischen Vorher und Nachher">
+    </div>
+  </div>
+</section>
+
+<section class="trust-band">
+  <div class="wrap trust">
+    <div>
+      <span class="mono">Warum Inova Bau</span>
+      <blockquote style="margin-top:16px;">„Über 25 Jahre Erfahrung, sieben Gewerke, ein Ansprechpartner — das ist unser Versprechen an Hamburg."</blockquote>
+      <div class="attribution">ALI BARMAKSIZ — INHABER</div>
+    </div>
+    <div>
+      <span class="mono" style="margin-bottom:16px;display:block;">Wir sind vor Ort in</span>
+      <div class="areas">
+        <span class="area-chip">Altona</span><span class="area-chip">Barmbek</span><span class="area-chip">Bergedorf</span>
+        <span class="area-chip">Blankenese</span><span class="area-chip">Eppendorf</span><span class="area-chip">HafenCity</span>
+        <span class="area-chip">Harburg</span><span class="area-chip">Harvestehude</span><span class="area-chip">Lokstedt</span>
+        <span class="area-chip">Niendorf</span><span class="area-chip">Ottensen</span><span class="area-chip">Rahlstedt</span>
+        <span class="area-chip">Rotherbaum</span><span class="area-chip">Uhlenhorst</span><span class="area-chip">Wandsbek</span>
+        <span class="area-chip">Winterhude</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="ueber-uns">
+  <div class="wrap about-grid">
+    <div class="about-panel" style="overflow:hidden;position:relative;">
+      <svg viewBox="0 0 500 375" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;position:absolute;inset:0;" preserveAspectRatio="xMidYMid slice">
+        <rect width="500" height="375" fill="#f7f2e6"/>
+        <g stroke="#4c5d41" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.8">
+          <!-- blueprint grid -->
+          <rect x="60" y="60" width="380" height="255" rx="6" stroke-dasharray="2 10" opacity="0.4"/>
+          <!-- floor plan -->
+          <rect x="110" y="110" width="280" height="160"/>
+          <path d="M250 110 L250 270"/>
+          <path d="M110 190 L250 190"/>
+          <rect x="140" y="230" width="50" height="40"/>
+          <!-- hammer -->
+          <path d="M360 90 L395 125" stroke-width="7"/>
+          <rect x="330" y="65" width="42" height="22" rx="4" transform="rotate(-45 351 76)" fill="#4c5d41" stroke="none"/>
+        </g>
+      </svg>
+      <span style="position:relative;z-index:1;">Illustration — echte Projektfotos folgen</span>
+    </div>
+    <div class="about-text">
+      <span class="mono">Über Inova Bau</span>
+      <h2 style="margin-top:14px;">Ein Betrieb, sieben Gewerke.</h2>
+      <p>Seit über 25 Jahren steht Inova Bau in Hamburg für zuverlässiges Handwerk — von der kleinen Reparatur bis zur kompletten Wohnungssanierung.</p>
+      <p>Statt mehrere Firmen zu koordinieren, bekommen Kundinnen und Kunden alles aus einer Hand: Sanitär, Elektro, Maler, Trockenbau, Maurer- und Tischlerarbeiten — abgestimmt, termingenau, aus St. Pauli für ganz Hamburg.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="cta-band">
+      <h2>Bereit für Ihr nächstes Projekt?</h2>
+      <p>Rufen Sie an oder schreiben Sie kurz, worum es geht — wir melden uns zeitnah zurück.</p>
+      <a href="#kontakt" class="btn-cream">Jetzt Kontakt aufnehmen</a>
+    </div>
+  </div>
+</section>
+
+<section id="kontakt">
+  <div class="wrap contact">
+    <div class="contact-info">
+      <span class="mono">Kontakt</span>
+      <h2 style="margin-top:14px;">Sprechen wir über Ihr Projekt</h2>
+      <p>Ob akuter Notfall oder geplante Sanierung — wir sind für Sie da.</p>
+      <ul class="contact-list">
+        <li><span class="label">Adresse</span><span>Budapester Str. 37, 20359 Hamburg</span></li>
+        <li><span class="label">Telefon</span><a href="tel:+494075063533">040 750 635 33</a></li>
+        <li><span class="label">Notfall</span><a href="tel:+4915164566665">01516 4566665</a></li>
+        <li><span class="label">E-Mail</span><a href="mailto:info@inova-bau.de">info@inova-bau.de</a></li>
+      </ul>
+    </div>
+    <form id="contact-form">
+      <label for="name">Name</label>
+      <input id="name" type="text" placeholder="Ihr Name">
+      <label for="phone">Telefon</label>
+      <input id="phone" type="tel" placeholder="Ihre Telefonnummer">
+      <label for="msg">Worum geht es?</label>
+      <textarea id="msg" rows="4" placeholder="Kurze Beschreibung Ihres Projekts"></textarea>
+      <button type="submit">Anfrage senden</button>
+    </form>
+  </div>
+</section>
+
+</div>
+<div id="subs">
+<section class="sub" id="p-sanierung" data-title="Wohnungssanierung" hidden><div class="wrap">
+<a class="back" href="#leistungen">Zurück zu den Leistungen</a>
+<div class="sub-head"><span class="mono">Leistung</span><h2>Wohnungssanierung</h2><p>Von der Entkernung bis zur Schlüsselübergabe koordinieren wir alle Gewerke. Sie haben einen Ansprechpartner und einen verbindlichen Terminplan.</p></div>
+<div class="gallery"><figure class="ph" data-slot="sanierung-1" data-alt="Wohnungssanierung 1"><span class="ph-label">Foto 1: Wohnungssanierung</span></figure><figure class="ph" data-slot="sanierung-2" data-alt="Wohnungssanierung 2"><span class="ph-label">Foto 2: Wohnungssanierung</span></figure><figure class="ph" data-slot="sanierung-3" data-alt="Wohnungssanierung 3"><span class="ph-label">Foto 3: Wohnungssanierung</span></figure></div>
+<div class="sub-grid"><div><h3>Das gehört dazu</h3><ul class="checks"><li>Entkernung und Rückbau</li><li>Elektro-, Sanitär- und Heizungsarbeiten</li><li>Wände, Böden und Decken</li><li>Malerarbeiten und Endreinigung</li><li>Bauleitung und Terminplanung</li></ul></div><div><h3>So läuft es ab</h3><ol class="steps"><li><strong>Besichtigung</strong><span>Wir schauen uns alles vor Ort an und besprechen Ihre Wünsche.</span></li><li><strong>Angebot</strong><span>Sie erhalten ein schriftliches Angebot mit klarem Leistungsumfang.</span></li><li><strong>Umsetzung und Abnahme</strong><span>Wir arbeiten nach Terminplan und übergeben das Ergebnis gemeinsam mit Ihnen.</span></li></ol></div></div>
+<div class="sub-cta"><h3>Projekt besprechen?</h3><a href="#kontakt" class="cta-btn">Anfrage stellen</a></div>
+</div></section>
+<section class="sub" id="p-sanitaer" data-title="Sanitär & Heizung" hidden><div class="wrap">
+<a class="back" href="#leistungen">Zurück zu den Leistungen</a>
+<div class="sub-head"><span class="mono">Leistung</span><h2>Sanitär &amp; Heizung</h2><p>Neues Bad, neue Heizung oder ein Rohrbruch mitten in der Nacht: Wir installieren, warten und helfen im Notfall.</p></div>
+<div class="gallery"><figure class="ph" data-slot="sanitaer-1" data-alt="Sanitär &amp; Heizung 1"><span class="ph-label">Foto 1: Sanitär &amp; Heizung</span></figure><figure class="ph" data-slot="sanitaer-2" data-alt="Sanitär &amp; Heizung 2"><span class="ph-label">Foto 2: Sanitär &amp; Heizung</span></figure><figure class="ph" data-slot="sanitaer-3" data-alt="Sanitär &amp; Heizung 3"><span class="ph-label">Foto 3: Sanitär &amp; Heizung</span></figure></div>
+<div class="sub-grid"><div><h3>Das gehört dazu</h3><ul class="checks"><li>Badsanierung und barrierefreie Bäder</li><li>Heizungsinstallation und Wartung</li><li>Warmwasser und Armaturen</li><li>Rohrbruch und Notdienst</li><li>Leitungen und Abflüsse</li></ul></div><div><h3>So läuft es ab</h3><ol class="steps"><li><strong>Besichtigung</strong><span>Wir schauen uns alles vor Ort an und besprechen Ihre Wünsche.</span></li><li><strong>Angebot</strong><span>Sie erhalten ein schriftliches Angebot mit klarem Leistungsumfang.</span></li><li><strong>Umsetzung und Abnahme</strong><span>Wir arbeiten nach Terminplan und übergeben das Ergebnis gemeinsam mit Ihnen.</span></li></ol></div></div>
+<div class="sub-cta"><h3>Projekt besprechen?</h3><a href="#kontakt" class="cta-btn">Anfrage stellen</a></div>
+</div></section>
+<section class="sub" id="p-elektro" data-title="Elektro" hidden><div class="wrap">
+<a class="back" href="#leistungen">Zurück zu den Leistungen</a>
+<div class="sub-head"><span class="mono">Leistung</span><h2>Elektro</h2><p>Sichere Elektrik für Neubau, Altbau und Gewerbe, fachgerecht nach den aktuellen Normen.</p></div>
+<div class="gallery"><figure class="ph" data-slot="elektro-1" data-alt="Elektro 1"><span class="ph-label">Foto 1: Elektro</span></figure><figure class="ph" data-slot="elektro-2" data-alt="Elektro 2"><span class="ph-label">Foto 2: Elektro</span></figure><figure class="ph" data-slot="elektro-3" data-alt="Elektro 3"><span class="ph-label">Foto 3: Elektro</span></figure></div>
+<div class="sub-grid"><div><h3>Das gehört dazu</h3><ul class="checks"><li>Elektroinstallation in Alt- und Neubau</li><li>Sicherungskasten und Zählerschrank</li><li>Beleuchtung innen und außen</li><li>Prüfung und E-Check</li><li>Vorbereitung für Smart Home</li></ul></div><div><h3>So läuft es ab</h3><ol class="steps"><li><strong>Besichtigung</strong><span>Wir schauen uns alles vor Ort an und besprechen Ihre Wünsche.</span></li><li><strong>Angebot</strong><span>Sie erhalten ein schriftliches Angebot mit klarem Leistungsumfang.</span></li><li><strong>Umsetzung und Abnahme</strong><span>Wir arbeiten nach Terminplan und übergeben das Ergebnis gemeinsam mit Ihnen.</span></li></ol></div></div>
+<div class="sub-cta"><h3>Projekt besprechen?</h3><a href="#kontakt" class="cta-btn">Anfrage stellen</a></div>
+</div></section>
+<section class="sub" id="p-maler" data-title="Maler" hidden><div class="wrap">
+<a class="back" href="#leistungen">Zurück zu den Leistungen</a>
+<div class="sub-head"><span class="mono">Leistung</span><h2>Maler</h2><p>Saubere Kanten, gleichmäßige Flächen und Schutz für Ihre Möbel: Wir streichen innen und außen.</p></div>
+<div class="gallery"><figure class="ph" data-slot="maler-1" data-alt="Maler 1"><span class="ph-label">Foto 1: Maler</span></figure><figure class="ph" data-slot="maler-2" data-alt="Maler 2"><span class="ph-label">Foto 2: Maler</span></figure><figure class="ph" data-slot="maler-3" data-alt="Maler 3"><span class="ph-label">Foto 3: Maler</span></figure></div>
+<div class="sub-grid"><div><h3>Das gehört dazu</h3><ul class="checks"><li>Innen- und Außenanstrich</li><li>Tapezieren und Spachteln</li><li>Fassadenanstrich</li><li>Lackieren von Türen und Fenstern</li><li>Ausbessern von Feuchteschäden</li></ul></div><div><h3>So läuft es ab</h3><ol class="steps"><li><strong>Besichtigung</strong><span>Wir schauen uns alles vor Ort an und besprechen Ihre Wünsche.</span></li><li><strong>Angebot</strong><span>Sie erhalten ein schriftliches Angebot mit klarem Leistungsumfang.</span></li><li><strong>Umsetzung und Abnahme</strong><span>Wir arbeiten nach Terminplan und übergeben das Ergebnis gemeinsam mit Ihnen.</span></li></ol></div></div>
+<div class="sub-cta"><h3>Projekt besprechen?</h3><a href="#kontakt" class="cta-btn">Anfrage stellen</a></div>
+</div></section>
+<section class="sub" id="p-trockenbau" data-title="Trocken- & Ladenbau" hidden><div class="wrap">
+<a class="back" href="#leistungen">Zurück zu den Leistungen</a>
+<div class="sub-head"><span class="mono">Leistung</span><h2>Trocken- &amp; Ladenbau</h2><p>Schnell und sauber neue Räume schaffen, ob für die Wohnung, das Büro oder das Ladengeschäft.</p></div>
+<div class="gallery"><figure class="ph" data-slot="trockenbau-1" data-alt="Trocken- &amp; Ladenbau 1"><span class="ph-label">Foto 1: Trocken- &amp; Ladenbau</span></figure><figure class="ph" data-slot="trockenbau-2" data-alt="Trocken- &amp; Ladenbau 2"><span class="ph-label">Foto 2: Trocken- &amp; Ladenbau</span></figure><figure class="ph" data-slot="trockenbau-3" data-alt="Trocken- &amp; Ladenbau 3"><span class="ph-label">Foto 3: Trocken- &amp; Ladenbau</span></figure></div>
+<div class="sub-grid"><div><h3>Das gehört dazu</h3><ul class="checks"><li>Ständerwände und abgehängte Decken</li><li>Dachausbau</li><li>Schall- und Brandschutz</li><li>Ladeneinrichtung und Theken</li><li>Umbau von Geschäftsräumen</li></ul></div><div><h3>So läuft es ab</h3><ol class="steps"><li><strong>Besichtigung</strong><span>Wir schauen uns alles vor Ort an und besprechen Ihre Wünsche.</span></li><li><strong>Angebot</strong><span>Sie erhalten ein schriftliches Angebot mit klarem Leistungsumfang.</span></li><li><strong>Umsetzung und Abnahme</strong><span>Wir arbeiten nach Terminplan und übergeben das Ergebnis gemeinsam mit Ihnen.</span></li></ol></div></div>
+<div class="sub-cta"><h3>Projekt besprechen?</h3><a href="#kontakt" class="cta-btn">Anfrage stellen</a></div>
+</div></section>
+<section class="sub" id="p-maurer" data-title="Maurer & Fliesen" hidden><div class="wrap">
+<a class="back" href="#leistungen">Zurück zu den Leistungen</a>
+<div class="sub-head"><span class="mono">Leistung</span><h2>Maurer &amp; Fliesen</h2><p>Von der tragenden Wand bis zur letzten Fuge: massiv gebaut und sauber verlegt.</p></div>
+<div class="gallery"><figure class="ph" data-slot="maurer-1" data-alt="Maurer &amp; Fliesen 1"><span class="ph-label">Foto 1: Maurer &amp; Fliesen</span></figure><figure class="ph" data-slot="maurer-2" data-alt="Maurer &amp; Fliesen 2"><span class="ph-label">Foto 2: Maurer &amp; Fliesen</span></figure><figure class="ph" data-slot="maurer-3" data-alt="Maurer &amp; Fliesen 3"><span class="ph-label">Foto 3: Maurer &amp; Fliesen</span></figure></div>
+<div class="sub-grid"><div><h3>Das gehört dazu</h3><ul class="checks"><li>Mauer- und Putzarbeiten</li><li>Wanddurchbrüche</li><li>Fliesen in Bad und Küche</li><li>Estrich</li><li>Abdichtung</li></ul></div><div><h3>So läuft es ab</h3><ol class="steps"><li><strong>Besichtigung</strong><span>Wir schauen uns alles vor Ort an und besprechen Ihre Wünsche.</span></li><li><strong>Angebot</strong><span>Sie erhalten ein schriftliches Angebot mit klarem Leistungsumfang.</span></li><li><strong>Umsetzung und Abnahme</strong><span>Wir arbeiten nach Terminplan und übergeben das Ergebnis gemeinsam mit Ihnen.</span></li></ol></div></div>
+<div class="sub-cta"><h3>Projekt besprechen?</h3><a href="#kontakt" class="cta-btn">Anfrage stellen</a></div>
+</div></section>
+<section class="sub" id="p-tischler" data-title="Tischler & Parkett" hidden><div class="wrap">
+<a class="back" href="#leistungen">Zurück zu den Leistungen</a>
+<div class="sub-head"><span class="mono">Leistung</span><h2>Tischler &amp; Parkett</h2><p>Maßgefertigte Lösungen in Holz, vom Einbauschrank bis zum geschliffenen Dielenboden.</p></div>
+<div class="gallery"><figure class="ph" data-slot="tischler-1" data-alt="Tischler &amp; Parkett 1"><span class="ph-label">Foto 1: Tischler &amp; Parkett</span></figure><figure class="ph" data-slot="tischler-2" data-alt="Tischler &amp; Parkett 2"><span class="ph-label">Foto 2: Tischler &amp; Parkett</span></figure><figure class="ph" data-slot="tischler-3" data-alt="Tischler &amp; Parkett 3"><span class="ph-label">Foto 3: Tischler &amp; Parkett</span></figure></div>
+<div class="sub-grid"><div><h3>Das gehört dazu</h3><ul class="checks"><li>Maßmöbel und Einbauschränke</li><li>Türen und Fenster</li><li>Parkett verlegen und schleifen</li><li>Treppen</li><li>Ladenmöbel</li></ul></div><div><h3>So läuft es ab</h3><ol class="steps"><li><strong>Besichtigung</strong><span>Wir schauen uns alles vor Ort an und besprechen Ihre Wünsche.</span></li><li><strong>Angebot</strong><span>Sie erhalten ein schriftliches Angebot mit klarem Leistungsumfang.</span></li><li><strong>Umsetzung und Abnahme</strong><span>Wir arbeiten nach Terminplan und übergeben das Ergebnis gemeinsam mit Ihnen.</span></li></ol></div></div>
+<div class="sub-cta"><h3>Projekt besprechen?</h3><a href="#kontakt" class="cta-btn">Anfrage stellen</a></div>
+</div></section>
+</div>
+<footer>
+  <div class="wrap">
+    <span>© Inova Bau, Ali Barmaksiz, Hamburg</span>
+    <span>Impressum · Datenschutz · AGB</span>
+  </div>
+</footer>
+
+<button id="chat-toggle" aria-label="Chat öffnen">💬</button>
+<div id="chat-panel">
+  <div id="chat-head">
+    <strong>Inova Assistent</strong><span>Fragen zu Leistungen & Terminen</span>
+    <button id="chat-close" aria-label="Chat schließen">✕</button>
+  </div>
+  <div id="chat-note">Hinweis: Sie chatten mit einem KI-System, keiner echten Person.</div>
+  <div id="chat-msgs"></div>
+  <form id="chat-form">
+    <input id="chat-input" type="text" placeholder="Frage eingeben…" autocomplete="off">
+    <button type="submit" aria-label="Senden">➤</button>
+  </form>
+</div>
+
+<script>
+const SYSTEM_PROMPT = `Du bist der freundliche Assistent von Inova Bau, einem Hamburger Meisterbetrieb (Inhaber Ali Barmaksiz, Budapester Str. 37, 20359 Hamburg).
+Leistungen: Wohnungssanierung, Sanitär & Heizung, Elektro, Maler, Trocken- & Ladenbau, Maurer & Fliesen, Tischler & Parkett.
+Über 25 Jahre Erfahrung, 7 Tage die Woche erreichbar. Notfall-Telefon: 01516 4566665, Büro: 040 750 635 33, E-Mail: info@inova-bau.de.
+Tätig in ganz Hamburg (u.a. Altona, Eppendorf, HafenCity, Winterhude, Wandsbek).
+Antworte in 2-4 Sätzen, freundlich und konkret. Bei Notfällen auf die Notfall-Nummer verweisen.`;
+
+let history = [];
+const panel = document.getElementById('chat-panel');
+const msgsEl = document.getElementById('chat-msgs');
+
+document.getElementById('chat-toggle').onclick = () => {
+  panel.classList.toggle('open');
+  if (panel.classList.contains('open') && msgsEl.children.length === 0) {
+    addMsg('bot', 'Hallo! Ich bin der Inova-Assistent. Frag mich gern zu unseren Leistungen oder einem Termin.');
+  }
+};
+document.getElementById('chat-close').onclick = () => panel.classList.remove('open');
+
+function addMsg(role, text){
+  const div = document.createElement('div');
+  div.className = 'msg ' + role;
+  div.textContent = text;
+  msgsEl.appendChild(div);
+  msgsEl.scrollTop = msgsEl.scrollHeight;
+  return div;
+}
+
+document.getElementById('chat-form').onsubmit = async (e) => {
+  e.preventDefault();
+  const input = document.getElementById('chat-input');
+  const text = input.value.trim();
+  if (!text) return;
+  input.value = '';
+  addMsg('user', text);
+  history.push({ role: 'user', content: text });
+
+  const typing = addMsg('bot', 'Inova-Assistent tippt…');
+
+  try {
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-6',
+        max_tokens: 1000,
+        system: SYSTEM_PROMPT,
+        messages: history
+      })
+    });
+    const data = await response.json();
+    const reply = (data.content || []).map(b => b.text || '').join('\n').trim() || 'Entschuldigung, dazu habe ich gerade keine Antwort. Bitte rufen Sie uns an.';
+    typing.remove();
+    addMsg('bot', reply);
+    history.push({ role: 'assistant', content: reply });
+  } catch (err) {
+    typing.remove();
+    addMsg('bot', 'Verbindung gerade nicht möglich. Bitte rufen Sie direkt an: 040 750 635 33.');
+  }
+};
+
+const tr=document.getElementById('track'),sls=[...tr.children],dotsEl=document.getElementById('dots');
+const calm=matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth';
+let cur=0;
+sls.forEach((_,k)=>{const d=document.createElement('button');d.className='dot'+(k?'':' on');d.setAttribute('aria-label','Folie '+(k+1));d.onclick=()=>go(k);dotsEl.appendChild(d);});
+function go(n){cur=(n+sls.length)%sls.length;tr.scrollTo({left:sls[cur].offsetLeft,behavior:calm});}
+tr.addEventListener('scroll',()=>{const k=Math.round(tr.scrollLeft/(sls[0].offsetWidth+16));[...dotsEl.children].forEach((d,j)=>d.classList.toggle('on',j===k));cur=k;});
+document.getElementById('prev').onclick=()=>go(cur-1);
+document.getElementById('next').onclick=()=>go(cur+1);
+tr.addEventListener('keydown',e=>{if(e.key==='ArrowRight')go(cur+1);if(e.key==='ArrowLeft')go(cur-1);});
+const ba=document.getElementById('ba');
+document.getElementById('ba-range').addEventListener('input',e=>ba.style.setProperty('--p',e.target.value+'%'));
+document.getElementById('contact-form').onsubmit=e=>{e.preventDefault();const b=e.target.querySelector('button');b.textContent='Danke — wir melden uns zeitnah.';b.disabled=true;};
+
+// FOTOS: hier Bild-Adressen eintragen, z. B. 'slide-1':'bilder/sanierung.jpg' oder eine https-Adresse.
+// Slots: slide-1..4, vorher, nachher, sanierung-1..3, sanitaer-1..3, elektro-1..3, maler-1..3, trockenbau-1..3, maurer-1..3, tischler-1..3
+const PHOTOS={};
+document.querySelectorAll('[data-slot]').forEach(el=>{const u=PHOTOS[el.dataset.slot];if(!u)return;const im=new Image();im.alt=el.dataset.alt||'';im.className='ph-img';im.onload=()=>{el.classList.add('has-photo');el.prepend(im);};im.src=u;});
+const home=document.getElementById('home'),subEls=[...document.querySelectorAll('.sub')],baseTitle=document.title;
+function route(){const h=location.hash,m=h.match(/^#\/(.+)$/),sub=m&&document.getElementById('p-'+m[1]);
+  home.hidden=!!sub;subEls.forEach(x=>x.hidden=x!==sub);
+  if(sub){document.title=sub.dataset.title+' — Inova Bau';window.scrollTo({top:0,behavior:'instant'});}
+  else{document.title=baseTitle;const t=h.length>1&&document.getElementById(h.slice(1));if(t)t.scrollIntoView();}}
+addEventListener('hashchange',route);route();
+</script>
+
+</body>
+</html>
